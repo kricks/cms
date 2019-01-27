@@ -6,6 +6,7 @@ import { HeaderComponent } from './header.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { ContactListComponent } from './contacts/contact-list/contact-list.component';
 import { ContactDetailComponent } from './contacts/contact-detail/contact-detail.component';
+import { ContactItemComponent } from './contacts/contact-item/contact-item.component';
 
 
 @NgModule({
@@ -15,6 +16,7 @@ import { ContactDetailComponent } from './contacts/contact-detail/contact-detail
     ContactsComponent,
     ContactListComponent,
     ContactDetailComponent,
+    ContactItemComponent,
   ],
   imports: [
     BrowserModule
