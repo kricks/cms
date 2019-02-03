@@ -1,3 +1,4 @@
+import { Document } from './document.model';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -6,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./documents.component.css']
 })
 export class DocumentsComponent implements OnInit {
+  selectedDocument: Document;
 
   constructor() { }
 

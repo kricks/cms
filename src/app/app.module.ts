@@ -1,3 +1,4 @@
+import { DropdownDirective } from './shared/dropdown.directive';
 import { DocumentListComponent } from './documents/document-list/document-list.component';
 import { DocumentItemComponent } from './documents/document-list/document-item/document-item.component';
 import { BrowserModule } from '@angular/platform-browser';
@@ -32,6 +33,7 @@ import { MessageListComponent } from './messages/message-list/message-list.compo
     MessagesItemComponent,
     MessageEditComponent,
     MessageListComponent,
+    DropdownDirective,
   ],
   imports: [
     BrowserModule
