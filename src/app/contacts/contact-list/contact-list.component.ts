@@ -8,19 +8,29 @@ import { Contact } from '../contacts.model';
 })
 export class ContactListComponent implements OnInit {
   @Output() selectedContactEvent = new EventEmitter<Contact>();
-    // tslint:disable-next-line:no-input-rename
-    @Input('contact') contacts: Contact[] = [
-       new Contact('1', 'Bro. Jackson', 'jacksonk@byui.edu', '208-496-3771',
-       'https://upload.wikimedia.org/wikipedia/commons/1/15/Recipe_logo.jpeg')
-     , new Contact('2', 'Bro. Barzee', 'barzeer@byui.edu', '208-496-3768', 'src\assets\trex.jpg')
-    ];
+  contacts: Contact[] = [
+    new Contact(
+        '1'
+      , 'Bro. Jackson'
+      , 'jacksonk@byui.edu'
+      , '208-496-3771'
+      , 'https://web.byui.edu/Directory/Employee/jacksonk.jpg'
+      )
+    , new Contact(
+      '2'
+      , 'Bro. Barzee'
+      , 'barzeer@byui.edu'
+      , '208-496-3768'
+      , 'https://web.byui.edu/Directory/Employee/barzeer.jpg'
+      )
+  ];
 
   constructor() { }
 
   ngOnInit() {
   }
 
-  @Input() onSelected(contact: Contact) {
+  onSelected(contact: Contact) {
     this.selectedContactEvent.emit(contact);
   }
 

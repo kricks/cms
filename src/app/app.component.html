@@ -1,10 +1,6 @@
-<cms-app-header></cms-app-header>
-<div class="container">
-    <div class="row">
-        <div class="col-md-12">    
-           <cms-contacts></cms-contacts> 
-           <!-- <cms-contact-list></cms-contact-list> -->
-           <!-- <cms-contact-detail></cms-contact-detail> -->
-        </div>
-    </div>
+<cms-app-header (selectedFeatureEvent)="selectedEvent($event)"></cms-app-header>
+<div [ngSwitch]="" class="container pull-left">
+    <cms-documents *ngSwitch="selectedFeature === 'documents'"></cms-documents>
+    <cms-message-list *ngSwitch="selectedFeature === 'messages'"></cms-message-list>
+    <cms-contacts *ngSwitch="selectedFeature !== 'contacts'"></cms-contacts>
 </div>
