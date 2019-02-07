@@ -1,6 +1,6 @@
-<cms-app-header (selectedFeatureEvent)="selectedEvent($event)"></cms-app-header>
-<div [ngSwitch]="" class="container pull-left">
-    <cms-documents *ngSwitch="selectedFeature === 'documents'"></cms-documents>
-    <cms-message-list *ngSwitch="selectedFeature === 'messages'"></cms-message-list>
-    <cms-contacts *ngSwitch="selectedFeature !== 'contacts'"></cms-contacts>
+<cms-app-header (selectedFeatureEvent)="switchView($event)"></cms-app-header>
+<div class="container pull-left">
+    <cms-documents *ngIf="selectedFeature === 'documents'"></cms-documents>
+    <cms-message-list *ngIf="selectedFeature === 'messages'"></cms-message-list>
+    <cms-contacts *ngIf="selectedFeature === 'contacts'"></cms-contacts>
 </div>

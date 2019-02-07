@@ -13,8 +13,8 @@ import { ContactItemComponent } from './contacts/contact-list/contact-item/conta
 import { DocumentsComponent } from './documents/documents.component';
 import { DocumentDetailComponent } from './documents/document-detail/document-detail.component';
 import { MessagesComponent } from './messages/messages.component';
-import { MessagesItemComponent } from './messages/messages-item/messages-item.component';
-import { MessageEditComponent } from './messages/message-edit/message-edit.component';
+import { MessageItemComponent } from './messages/message-list/message-item/message-item.component';
+import { MessageEditComponent } from './messages/message-list/message-edit/message-edit.component';
 import { MessageListComponent } from './messages/message-list/message-list.component';
 
 @NgModule({
@@ -30,7 +30,7 @@ import { MessageListComponent } from './messages/message-list/message-list.compo
     DocumentItemComponent,
     DocumentDetailComponent,
     MessagesComponent,
-    MessagesItemComponent,
+    MessageItemComponent,
     MessageEditComponent,
     MessageListComponent,
     DropdownDirective,
