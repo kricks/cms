@@ -1,3 +1,4 @@
+import { MessageService } from './../messages.service';
 import { Message } from './../message.model';
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 
@@ -9,30 +10,11 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 })
 export class MessageListComponent implements OnInit {
   @Output() messageWasAdded = new EventEmitter<Message>();
-  messages: Message[] = [
-    new Message(
-      '1'
-      , 'subject 1'
-      , 'Hello World! 1'
-      , 'sender 1'
-    )
-    ,
-    new Message(
-      '2'
-      , 'subject 2'
-      , 'Hello World! 2'
-      , 'sender 2'
-    )
-    ,
-    new Message(
-      '3'
-      , 'subject 3'
-      , 'Hello World! 3'
-      , 'sender 3'
-    )
-  ];
+  messages: Message[] = [];
 
-  constructor() { }
+  constructor(private messageService2: MessageService) {
+    this.messages = this.messageService2.getMessages();
+   }
 
   ngOnInit() {
   }

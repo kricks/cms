@@ -1,3 +1,4 @@
+import { DocumentService } from './../documents.service';
 import { Document } from './../document.model';
 import { Component, OnInit, Input } from '@angular/core';
 
@@ -13,6 +14,7 @@ export class DocumentDetailComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
 
 }

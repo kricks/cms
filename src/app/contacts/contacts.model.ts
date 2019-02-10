@@ -6,7 +6,7 @@ export class Contact {
         , public name: string
         , public email: string
         , public phone: string
-        , public imageURL: string
+        , public imageUrl: string
         , public group: Contact[]) {
         }
 }

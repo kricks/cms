@@ -1,5 +1,6 @@
 import { Message } from './message.model';
 import { Component, OnInit, Input } from '@angular/core';
+import { MessageService } from './messages.service';
 
 @Component({
   selector: 'cms-messages',
