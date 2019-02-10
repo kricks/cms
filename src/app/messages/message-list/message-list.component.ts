@@ -1,5 +1,6 @@
 import { Message } from './../message.model';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+
 
 @Component({
   selector: 'cms-message-list',
@@ -7,7 +8,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./message-list.component.css']
 })
 export class MessageListComponent implements OnInit {
-
+  @Output() messageWasAdded = new EventEmitter<Message>();
   messages: Message[] = [
     new Message(
       '1'

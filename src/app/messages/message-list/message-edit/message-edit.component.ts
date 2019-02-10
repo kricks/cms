@@ -24,6 +24,12 @@ export class MessageEditComponent implements OnInit {
     const msgText  = this.msgText.nativeElement.value;
     const newMessage = new Message('1', subject, msgText, this.currentSender);
     this.addMessageEvent.emit(newMessage);
+    this.onClear();
+  }
+
+  onClear() {
+    this.subject.nativeElement.value = '';
+    this.msgText.nativeElement.value = '';
   }
 
 }

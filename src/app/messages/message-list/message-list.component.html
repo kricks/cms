@@ -9,14 +9,15 @@
     <div class="panel-body">
       <div class="row">
         <div class="col-xs-12">
-          <cms-message-item>
+          <cms-message-item
+          >
             <hr>
             <ul class="list-group">
               <a href="#"
                 class="list-grou-item"
                 style="cursor: pointer"
                 *ngFor="let message of messages">
-                {{messasge.subject}} ({{message.msgText}})
+                {{message.subject}} ({{message.msgText}})
               </a>
             </ul>
           </cms-message-item>
@@ -24,7 +25,9 @@
       </div>
     </div>
     <div class="panel-footer">
-      <cms-message-edit></cms-message-edit>
+      <cms-message-edit
+      >
+      </cms-message-edit>
     </div>
   </div>
 </div>
