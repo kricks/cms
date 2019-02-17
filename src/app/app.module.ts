@@ -23,6 +23,7 @@ import { DocumentService } from './documents/documents.service';
 import { DocumentViewComponent } from './documents/document-view/document-view.component';
 import { DocumentEditComponent } from './documents/document-edit/document-edit.component';
 import { WindRefComponent } from './wind-ref/wind-ref.component';
+import { WindRefService } from './wind-ref/wind-ref.service';
 
 @NgModule({
   declarations: [
@@ -49,7 +50,7 @@ import { WindRefComponent } from './wind-ref/wind-ref.component';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [MessageService, ContactService, DocumentService],
+  providers: [MessageService, ContactService, DocumentService, WindRefService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
