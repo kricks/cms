@@ -10,10 +10,14 @@ import { DocumentService } from './documents.service';
 export class DocumentsComponent implements OnInit {
   selectedDocument: Document;
 
-  constructor(private documentService: DocumentService) { }
+  constructor(private documentService2: DocumentService) { }
 
   ngOnInit() {
-
+    this.documentService2.documentSelectedEvent.subscribe(
+      (document: Document) => {
+        this.selectedDocument = document;
+      }
+    );
   }
 
 }

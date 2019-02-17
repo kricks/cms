@@ -8,7 +8,7 @@ export const MOCKCONTACTS: Contact[] = [
     name: 'Rex Barzee',
     email: 'barzeer@byui.edu',
     phone: '208-496-3768',
-    imageUrl: 'src\assets\images\barzeer.jpg',
+    imageUrl: '../../assets/images/barzeer.jpg',
     group: null
   },
   // index 1

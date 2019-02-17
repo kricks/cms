@@ -1,6 +1,7 @@
 import { MessageService } from './../../messages.service';
 import { Message } from './../../message.model';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { Contact } from 'src/app/contacts/contacts.model';
 
 
 @Component({
@@ -9,10 +10,10 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
   styleUrls: ['./message-edit.component.css']
 })
 export class MessageEditComponent implements OnInit {
-  currentSender = 'Katie';
-
   @ViewChild('subject') subject: ElementRef;
   @ViewChild('msgText') msgText: ElementRef;
+
+  currentSender = '1';
 
   constructor(private messageService2: MessageService) { }
 
