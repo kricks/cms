@@ -1,7 +1,9 @@
-import { Contact } from './contacts.model';
+import { Router } from '@angular/router';
+
 import { MOCKCONTACTS } from './MOCKCONTACTS';
 import { EventEmitter, Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import { Contact } from './contacts.model';
 
 @Injectable()
 export class ContactService {
@@ -10,7 +12,7 @@ export class ContactService {
     contactListChangedEvent = new Subject<Contact[]>();
     maxContactId: number;
 
-    constructor() {
+    constructor(private router: Router) {
         this.contacts = MOCKCONTACTS;
         this.maxContactId = this.getMaxId();
     }
@@ -32,7 +34,7 @@ export class ContactService {
     getMaxId(): number {
         let maxId = 0;
         for (const contactList of this.contacts) {
-            const currentId = +contactList.id;
+            const currentId = (parseInt(contactList.id, 0));
 
             if (currentId > maxId) {
                 maxId = currentId;
@@ -41,19 +43,19 @@ export class ContactService {
         return maxId;
     }
 
-    addContact(newContact: Contact) {
-        if (newContact === undefined || null) {
-            return;
-        }
+    // addContact(newContact: Contact) {
+    //     if (newContact === undefined || null) {
+    //         return;
+    //     }
 
-        this.maxContactId++;
-        newContact.id = this.maxContactId;
+    //     this.maxContactId++;
+    //     newContact.id = this.maxContactId;
 
-        newContact.push(...this.contacts);
-        const documentListClone = this.documents.slice();
+    //     newContact.push(this.contacts);
+    //     const documentListClone = this.contacts.slice();
 
-        this.documentListChangedEvent.next(documentListClone);
-    }
+    //     this.contactListChangedEvent.next(documentListClone);
+    // }
 
     updateContact(originalContact: Contact, newContact: Contact) {
         if (originalContact || newContact === undefined || null) {

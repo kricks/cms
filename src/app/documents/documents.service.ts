@@ -2,7 +2,6 @@ import { Document } from './document.model';
 import { MOCKDOCUMENTS } from './MOCKDOCUMENTS';
 import { EventEmitter } from '@angular/core';
 import { Subject } from 'rxjs';
-import { currentId } from 'async_hooks';
 
 export class DocumentService {
     public documents: Document[] = [];
@@ -31,7 +30,7 @@ export class DocumentService {
     getMaxId(): number {
         let maxId = 0;
         for (const documentList of this.documents) {
-            const currentId = +documentList.id;
+            const currentId = (parseInt(documentList.id, 0));
 
             if (currentId > maxId) {
                 maxId = currentId;
@@ -45,13 +44,13 @@ export class DocumentService {
             return;
         }
 
-        this.maxDocumentId++;
-        newDocument.id = this.maxDocumentId;
+        // this.maxDocumentId++;
+        // newDocument.id = this.maxDocumentId;
 
-        newDocument.push(...this.documents);
-        const documentListClone = this.documents.slice();
+        // newDocument.push(this.documents);
+        // const documentListClone = this.documents.slice();
 
-        this.documentListChangedEvent.next(documentListClone);
+        // this.documentListChangedEvent.next(documentListClone);
 
     }
 
