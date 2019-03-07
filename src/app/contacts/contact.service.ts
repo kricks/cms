@@ -43,19 +43,19 @@ export class ContactService {
         return maxId;
     }
 
-    // addContact(newContact: Contact) {
-    //     if (newContact === undefined || null) {
-    //         return;
-    //     }
+    addContact(newContact: Contact) {
+        if (newContact === undefined || null) {
+            return;
+        }
 
-    //     this.maxContactId++;
-    //     newContact.id = this.maxContactId;
+        this.maxContactId++;
+        newContact.id = String(this.maxContactId);
 
-    //     newContact.push(this.contacts);
-    //     const documentListClone = this.contacts.slice();
+        this.contacts.push(newContact);
+        const documentListClone = this.contacts.slice();
 
-    //     this.contactListChangedEvent.next(documentListClone);
-    // }
+        this.contactListChangedEvent.next(documentListClone);
+    }
 
     updateContact(originalContact: Contact, newContact: Contact) {
         if (originalContact || newContact === undefined || null) {

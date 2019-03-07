@@ -3,6 +3,7 @@ import { DocumentService } from './../documents.service';
 import { Document } from './../document.model';
 import { Component, OnInit} from '@angular/core';
 import { ActivatedRoute, Router, Params } from '@angular/router';
+import { routerNgProbeToken } from '@angular/router/src/router_module';
 
 @Component({
   selector: 'cms-document-detail',
@@ -34,6 +35,11 @@ export class DocumentDetailComponent implements OnInit {
     if (this.document.url) {
       this.nativeWindow.open(this.document.url);
     }
+  }
+
+  onDelete() {
+    this.documentService.deleteDocument(this.document);
+    this.router.navigate(['/documents']);
   }
 
 }

@@ -44,13 +44,13 @@ export class DocumentService {
             return;
         }
 
-        // this.maxDocumentId++;
-        // newDocument.id = this.maxDocumentId;
+        this.maxDocumentId++;
+        newDocument.id = String(this.maxDocumentId);
 
-        // newDocument.push(this.documents);
-        // const documentListClone = this.documents.slice();
+        this.documents.push(newDocument);
+        const documentListClone = this.documents.slice();
 
-        // this.documentListChangedEvent.next(documentListClone);
+        this.documentListChangedEvent.next(documentListClone);
 
     }
 

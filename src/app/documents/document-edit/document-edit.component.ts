@@ -1,3 +1,4 @@
+import { Document } from './../document.model';
 import { DocumentService } from './../documents.service';
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -44,7 +45,7 @@ export class DocumentEditComponent implements OnInit {
   onSubmit(form: NgForm) {
     const values = form.value;
 
-    const newDocument = new Document(values.id, values.name, values.description, values.url);
+    const newDocument = new Document(values.id, values.name, values.description, values.url, null);
 
     if (this.editMode = true) {
       this.documentService.updateDocument(this.originalDocument, newDocument);

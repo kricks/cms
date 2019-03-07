@@ -25,6 +25,7 @@ import { DocumentViewComponent } from './documents/document-view/document-view.c
 import { DocumentEditComponent } from './documents/document-edit/document-edit.component';
 import { WindRefComponent } from './wind-ref/wind-ref.component';
 import { WindRefService } from './wind-ref/wind-ref.service';
+import { ContactEditComponent } from './contacts/contact-edit/contact-edit.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { WindRefService } from './wind-ref/wind-ref.service';
     DocumentViewComponent,
     DocumentEditComponent,
     WindRefComponent,
+    ContactEditComponent,
   ],
   imports: [
     BrowserModule,
