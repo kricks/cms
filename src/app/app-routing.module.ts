@@ -1,3 +1,5 @@
+import { ContactDetailComponent } from './contacts/contact-detail/contact-detail.component';
+import { ContactEditComponent } from './contacts/contact-edit/contact-edit.component';
 import { DocumentDetailComponent } from './documents/document-detail/document-detail.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import { MessagesComponent } from './messages/messages.component';
@@ -15,8 +17,8 @@ const app_routes: Routes = [
     ]},
     {path: 'messages', component: MessagesComponent},
     {path: 'contact', component: ContactsComponent, children: [
-        {path: 'new', component: DocumentEditComponent},
-        {path: ':id', component: DocumentDetailComponent},
+        {path: 'new', component: ContactEditComponent},
+        {path: ':id', component: ContactDetailComponent},
         {path: ':id/:edit', component: DocumentEditComponent}
     ]},
 ];

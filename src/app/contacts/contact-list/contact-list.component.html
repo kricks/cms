@@ -11,10 +11,8 @@
       </div>
     </div>
     <div class="panel-body">
-        <cms-contact-item
-        *ngFor="let contactEl of contacts"
-        [contact]="contactEl"
-        [routerLink]="">
+      <cms-contact-item *ngFor="let contactEl of contacts" [contact]="contactEl"
+        dnd-draggable [dragEnabled]="true" [dragData]="contact" [dropZones]="['contactGroup']">
       </cms-contact-item>
     </div>
     

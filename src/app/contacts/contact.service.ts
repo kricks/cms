@@ -52,9 +52,9 @@ export class ContactService {
         newContact.id = String(this.maxContactId);
 
         this.contacts.push(newContact);
-        const documentListClone = this.contacts.slice();
+        const contactListClone = this.contacts.slice();
 
-        this.contactListChangedEvent.next(documentListClone);
+        this.contactListChangedEvent.next(contactListClone);
     }
 
     updateContact(originalContact: Contact, newContact: Contact) {
