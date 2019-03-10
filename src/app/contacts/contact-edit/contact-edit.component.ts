@@ -75,24 +75,24 @@ export class ContactEditComponent implements OnInit {
     return false;
   }
 
-  addToGroup($event: any) {
-    const selectedContact: Contact = $event.dragData;
-    let invalidGroupContact = this.isInvalidContact(selectedContact);
-    if (invalidGroupContact) {
-      return;
-    }
-    this.groupContacts.push(selectedContact);
-    invalidGroupContact = false;
+  // addToGroup($event: any) {
+  //   const selectedContact: Contact = $event.dragData;
+  //   this.invalidGroupContact = this.isInvalidContact(selectedContact);
+  //   if (this.invalidGroupContact) {
+  //     return;
+  //   }
+  //   this.groupContacts.push(selectedContact);
+  //   this.invalidGroupContact = false;
 
-  }
+  // }
 
-  onRemoveItem(idx: number) {
-    if (idx < 0 || idx >= this.groupContacts.length) {
-      return;
+  // onRemoveItem(idx: number) {
+  //   if (idx < 0 || idx >= this.groupContacts.length) {
+  //     return;
 
-      this.groupContacts.splice(idx, 1);
-      const invalidGroupContact = false;
-    }
-  }
+  //     this.groupContacts.splice(idx, 1);
+  //     this.invalidGroupContact = false;
+  //   }
+  // }
 
 }

@@ -11,6 +11,7 @@ import { Contact } from '../contacts.model';
 export class ContactListComponent implements OnInit, OnDestroy {
   contacts: Contact[] = [];
   Subscription: Subscription;
+  term: String;
 
   constructor(private contactService2: ContactService) {
 
@@ -30,8 +31,8 @@ export class ContactListComponent implements OnInit, OnDestroy {
     this.Subscription.unsubscribe();
   }
 
-  // onSelected(contact: Contact) {
-  //   this.contactService2.contactSelectedEvent.emit(contact);
-  // }
+  onKeyPress(value: string) {
+    this.term = value;
+  }
 
 }
