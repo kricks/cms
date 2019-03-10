@@ -1,21 +1,35 @@
 import { Document } from './document.model';
 import { MOCKDOCUMENTS } from './MOCKDOCUMENTS';
-import { EventEmitter } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
+import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 
+@Injectable()
 export class DocumentService {
-    public documents: Document[] = [];
+    documents: Document[] = [];
     documentSelectedEvent = new EventEmitter<Document>();
     documentListChangedEvent = new Subject<Document[]>();
     maxDocumentId: number;
 
-    constructor() {
+    constructor(private http: HttpClient) {
         this.documents = MOCKDOCUMENTS;
         this.maxDocumentId = this.getMaxId();
     }
 
     getDocuments() {
-        return this.documents.slice();
+        this.http.get('https://project-cms-6b40b.firebaseio.com/documents.json')
+        .subscribe(
+            (documents: Document[]) => {
+                this.documents = documents;
+                // this.maxDocumentId = this.getMaxId();
+                this.documents.sort((a, b) =>
+                (a['name'] < b['name']) ? 1 : (a['name'] > b['name']) ? -1 : 0);
+                this.documentListChangedEvent.next(this.documents.slice());
+            }
+            , (error: any) => {
+                console.log('Error: Something went wrong...');
+            }
+        );
     }
 
     getDocument(id: string): Document {
@@ -85,6 +99,11 @@ export class DocumentService {
         this.documents.splice(pos, 1);
         const documentsListClone = this.documents.slice();
         this.documentListChangedEvent.next(documentsListClone);
+    }
+
+    storeDocuments(document: any[]) {
+        this.documents = JSON.parse(JSON.stringify(this.documents));
+        const headers = new Headers({'Content-Type': 'application/json'});
     }
 
 }

@@ -7,12 +7,8 @@
       </div>
       <div class="row">
         <div class="input-group pull-left pad-left-right col-xs-7">
-                <input 
-                type="text"
-                [ngModel]="contact"
-                #searchBox="ngModel"
-                class="form-control"
-                placeholder="Enter search value">
+          
+          <input type="text" #searchBox (keyup)="onKeyPress(searchBox.value)" placeholder="Enter search value">
 
           <div class="glyphicon glyphicon glyphicon-search input-group-addon" (click)="onKeyPress(searchBox.value)"></div>
         </div>

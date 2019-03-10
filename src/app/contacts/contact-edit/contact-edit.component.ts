@@ -14,6 +14,7 @@ export class ContactEditComponent implements OnInit {
   groupContacts: Contact[] = [];
   editMode = false;
   hasGroup = false;
+  invalidGroupContact = false;
 
   constructor(private contactService: ContactService,
     private router: Router,
@@ -75,24 +76,24 @@ export class ContactEditComponent implements OnInit {
     return false;
   }
 
-  // addToGroup($event: any) {
-  //   const selectedContact: Contact = $event.dragData;
-  //   this.invalidGroupContact = this.isInvalidContact(selectedContact);
-  //   if (this.invalidGroupContact) {
-  //     return;
-  //   }
-  //   this.groupContacts.push(selectedContact);
-  //   this.invalidGroupContact = false;
+  addToGroup($event: any) {
+    const selectedContact: Contact = $event.dragData;
+    this.invalidGroupContact = this.isInvalidContact(selectedContact);
+    if (this.invalidGroupContact) {
+      return;
+    }
+    this.groupContacts.push(selectedContact);
+    this.invalidGroupContact = false;
 
-  // }
+  }
 
-  // onRemoveItem(idx: number) {
-  //   if (idx < 0 || idx >= this.groupContacts.length) {
-  //     return;
+  onRemoveItem(idx: number) {
+    if (idx < 0 || idx >= this.groupContacts.length) {
+      return;
 
-  //     this.groupContacts.splice(idx, 1);
-  //     this.invalidGroupContact = false;
-  //   }
-  // }
+      this.groupContacts.splice(idx, 1);
+      this.invalidGroupContact = false;
+    }
+  }
 
 }

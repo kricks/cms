@@ -6,6 +6,7 @@ import { DocumentItemComponent } from './documents/document-list/document-item/d
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
+import { HttpClientModule } from '@angular/common/http';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header.component';
@@ -57,6 +58,7 @@ import { ContactsFilterPipe } from './contacts/contacts-filter.pipe';
     AppRoutingModule,
     FormsModule,
     DndModule.forRoot(),
+    HttpClientModule,
   ],
   providers: [MessageService, ContactService, DocumentService, WindRefService],
   bootstrap: [AppComponent]
