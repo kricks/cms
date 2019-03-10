@@ -11,7 +11,8 @@ export class DocumentService {
     documentListChangedEvent = new Subject<Document[]>();
     maxDocumentId: number;
 
-    constructor(private http: HttpClient) {
+    constructor(private http: HttpClient,
+                private documentservice: DocumentService) {
         this.documents = MOCKDOCUMENTS;
         this.maxDocumentId = this.getMaxId();
     }
@@ -104,6 +105,7 @@ export class DocumentService {
     storeDocuments(document: any[]) {
         this.documents = JSON.parse(JSON.stringify(this.documents));
         const headers = new Headers({'Content-Type': 'application/json'});
+        return this.http.put('https://project-cms-6b40b.firebaseio.com/documents.json', this.documentservice.getDocument());
     }
 
 }
