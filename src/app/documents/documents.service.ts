@@ -12,7 +12,7 @@ export class DocumentService {
     maxDocumentId: number;
 
     constructor(private http: HttpClient,
-                private documentservice: DocumentService) {
+                private documentService: DocumentService) {
         this.documents = MOCKDOCUMENTS;
         this.maxDocumentId = this.getMaxId();
     }
@@ -105,7 +105,7 @@ export class DocumentService {
     storeDocuments(document: any[]) {
         this.documents = JSON.parse(JSON.stringify(this.documents));
         const headers = new Headers({'Content-Type': 'application/json'});
-        return this.http.put('https://project-cms-6b40b.firebaseio.com/documents.json', this.documentservice.getDocument());
+        this.http.put('https://project-cms-6b40b.firebaseio.com/documents.json', this.documentService.getDocument('1'));
     }
 
 }
