@@ -15,7 +15,7 @@ var index = require('./server/routes/app');
 // establish a connection to the mongo database
 // *** Important *** change yourPort and yourDatabase
 //     to those used by your database
-mongoose.connect('localhost:3000/cms');
+mongoose.connect('mongodb://localhost:27017/cms');
 
 var app = express(); // create an instance of express
 
@@ -31,8 +31,16 @@ app.use(express.static(path.join(__dirname, 'dist')));
 
 // Tell express to map the default route ("/") to the index route
 app.use('/', index);
+app.use('/messages', messageRoutes);
+app.use('/contacts', contactRoutes);
+app.use('/documents', documentsRoutes);
 
 // ... ADD YOUR CODE TO MAP YOUR URL'S TO ROUTING FILES HERE ...
+// get defined routing files
+var index = require('./server/routes/app');
+const messageRoutes = require('./server/routes/messages');
+const contactRoutes = require('./server/routes/contacts');
+const documentsRoutes = require('./server/routes/documents');
 
 
 // Tell express to map all other non-defined routes back to the index page
@@ -49,3 +57,5 @@ const server = http.createServer(app);
 
 // Tell the server to start listening on the provided port
 server.listen(port, function() {console.log("API running on localhost: " + port)});
+
+

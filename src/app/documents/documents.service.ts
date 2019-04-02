@@ -102,10 +102,10 @@ export class DocumentService {
         this.documentListChangedEvent.next(documentsListClone);
     }
 
-    storeDocuments(document: any[]) {
-        this.documents = JSON.parse(JSON.stringify(this.documents));
-        const headers = new Headers({'Content-Type': 'application/json'});
-        this.http.put('https://project-cms-6b40b.firebaseio.com/documents.json', this.documentService.getDocument('1'));
-    }
+    // storeDocuments(document: any[]) {
+    //     this.documents = JSON.parse(JSON.stringify(this.documents));
+    //     const headers = new Headers({'Content-Type': 'application/json'});
+    //     this.http.put('https://project-cms-6b40b.firebaseio.com/documents.json', this.documentService.getDocument('1'));
+    // }
 
 }
