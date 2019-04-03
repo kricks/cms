@@ -1,7 +1,9 @@
 import { MOCKMESSAGES } from './MOCKMESSAGES';
 import { Message } from './message.model';
-import { EventEmitter } from '@angular/core';
-
+import { EventEmitter, Injectable } from '@angular/core';
+@Injectable({
+    providedIn: 'root'
+})
 export class MessageService {
     public messages: Message[] = [];
     messageChanged = new EventEmitter<Message[]>();

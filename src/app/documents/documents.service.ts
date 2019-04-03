@@ -4,7 +4,9 @@ import { EventEmitter, Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import {HttpClient, HttpHeaders, HttpResponse} from '@angular/common/http';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class DocumentService {
     documents: Document[] = [];
     documentSelectedEvent = new EventEmitter<Document>();
