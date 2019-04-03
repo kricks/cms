@@ -14,37 +14,35 @@ export class DocumentEditComponent implements OnInit {
   originalDocument: Document;
   document: Document;
   editMode = false;
+  id: string;
 
   constructor(private documentService: DocumentService,
               private router: Router,
               private route: ActivatedRoute) {
 
-              }
+  }
 
   ngOnInit() {
-    this.route.params.subscribe (
-      (params: Params) => {
-        const id = params.id;
-
-        if (params.id === undefined || null) {
-          this.editMode = false;
-          return;
-        }
-
-        const originalDocument = this.documentService.getDocument(id);
-
-        if (originalDocument === undefined || null) {
-          return;
-        }
-        this.editMode = true;
-        this.document = JSON.parse(JSON.stringify(this.originalDocument));
-      }
-    );
+    this.route.params
+      .subscribe(
+        (params: Params) => {
+          this.id = params['id'];
+          if (this.id === null || this.id === undefined) {
+            this.editMode = false;
+            return;
+          }
+          this.originalDocument = this.documentService.getDocument(this.id);
+          if (this.originalDocument === undefined || this.originalDocument === null) {
+            this.editMode = false;
+            return;
+          }
+          this.editMode = true;
+          this.document = JSON.parse(JSON.stringify(this.originalDocument));
+        });
   }
 
   onSubmit(form: NgForm) {
     const values = form.value;
-
     const newDocument = new Document(values.id, values.name, values.description, values.url, null);
 
     if (this.editMode = true) {

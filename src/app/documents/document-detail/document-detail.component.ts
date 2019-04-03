@@ -16,9 +16,9 @@ export class DocumentDetailComponent implements OnInit {
   nativeWindow: any;
 
   constructor(private documentService: DocumentService,
-    private nativeWindowService: WindRefService,
-    private route: ActivatedRoute,
-    private router: Router) {
+              private nativeWindowService: WindRefService,
+              private route: ActivatedRoute,
+              private router: Router) {
       this.nativeWindow = this.nativeWindowService.getNative();
 }
 

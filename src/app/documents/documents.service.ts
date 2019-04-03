@@ -15,7 +15,7 @@ export class DocumentService {
 
     constructor(private http: HttpClient,
                 private documentService: DocumentService) {
-        this.documents = MOCKDOCUMENTS;
+        // this.documents = MOCKDOCUMENTS;
         this.maxDocumentId = this.getMaxId();
     }
 
@@ -47,7 +47,7 @@ export class DocumentService {
     getMaxId(): number {
         let maxId = 0;
         for (const documentList of this.documents) {
-            const currentId = (parseInt(documentList.id, 0));
+            const currentId = (parseInt(documentList.id, 10));
 
             if (currentId > maxId) {
                 maxId = currentId;
@@ -57,19 +57,41 @@ export class DocumentService {
     }
 
     addDocument(newDocument: Document) {
-        if (newDocument === undefined || null) {
-            return;
+        if (!newDocument) {
+          return;
         }
 
-        this.maxDocumentId++;
-        newDocument.id = String(this.maxDocumentId);
+        const headers = new HttpHeaders({
+          'Content-Type': 'application/json'
+        });
+        newDocument.id = '';
+        const strDocument = JSON.stringify(newDocument);
 
-        this.documents.push(newDocument);
-        const documentListClone = this.documents.slice();
+        this.http.post<{ message: string, documents: Document[] }>('http://localhost:3000/documents',
+          strDocument,
+          { headers: headers })
+          .subscribe(
+            (res) => {
+              this.documents = res.documents;
+              this.documents.sort((a, b) => (a.name < b.name) ? 1 : (a.name > b.name) ? -1 : 0);
+              this.documentListChangedEvent.next(this.documents.slice());
+            });
+      }
 
-        this.documentListChangedEvent.next(documentListClone);
+    // addDocument(newDocument: Document) {
+    //     if (newDocument === undefined || null) {
+    //         return;
+    //     }
 
-    }
+    //     this.maxDocumentId++;
+    //     newDocument.id = String(this.maxDocumentId);
+
+    //     this.documents.push(newDocument);
+    //     const documentListClone = this.documents.slice();
+
+    //     this.documentListChangedEvent.next(documentListClone);
+
+    // }
 
     updateDocument(originalDocument: Document, newDocument: Document) {
         if (originalDocument || newDocument === undefined || null) {

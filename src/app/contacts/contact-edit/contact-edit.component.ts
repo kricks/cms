@@ -15,6 +15,8 @@ export class ContactEditComponent implements OnInit {
   editMode = false;
   hasGroup = false;
   invalidGroupContact = false;
+  id: string;
+  originalContact: Contact;
 
   constructor(private contactService: ContactService,
     private router: Router,
@@ -23,23 +25,22 @@ export class ContactEditComponent implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(
       (params: Params) => {
-        const id = params.id;
-
-        if (params.id === undefined || null) {
+        const id = params['id'];
+        if (this.id === undefined || this.id === null) {
           this.editMode = false;
           return;
         }
 
-        const originalContact = this.contactService.getContact(id);
+        this.originalContact = this.contactService.getContact(id);
 
-        if (originalContact === undefined || null) {
+        if (this.originalContact === undefined || this.originalContact === null) {
           return;
         }
         this.editMode = true;
-        this.contact = JSON.parse(JSON.stringify(this.contact));
+        this.contact = JSON.parse(JSON.stringify(this.originalContact));
 
-        if (this.groupContacts) {
-          this.groupContacts = JSON.parse(JSON.stringify(this.groupContacts));
+        if (this.originalContact.group && this.originalContact.group.length > 0) {
+          this.groupContacts = JSON.parse(JSON.stringify(this.originalContact.group));
         }
         // const contactListClone = this..slice();
       }
@@ -51,12 +52,16 @@ export class ContactEditComponent implements OnInit {
 
     const newContact = new Contact(values.id, values.name, values.email, values.phone,
       values.imageUrl, values.group);
-    if (this.editMode = true) {
-      // this.contactService.updateContact(this.groupContacts, newContact);
+    if (this.editMode === true) {
+      this.contactService.updateContact(this.originalContact, newContact);
     } else {
       this.contactService.addContact(newContact);
     }
 
+    this.router.navigate(['/contacts']);
+  }
+
+  onCancel() {
     this.router.navigate(['/contacts']);
   }
 
@@ -90,10 +95,8 @@ export class ContactEditComponent implements OnInit {
   onRemoveItem(idx: number) {
     if (idx < 0 || idx >= this.groupContacts.length) {
       return;
-
+    }
       this.groupContacts.splice(idx, 1);
       this.invalidGroupContact = false;
-    }
   }
-
 }

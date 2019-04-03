@@ -1,6 +1,7 @@
 import { MessageService } from './../messages.service';
 import { Message } from './../message.model';
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
 
 
 @Component({
@@ -8,16 +9,17 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   templateUrl: './message-list.component.html',
   styleUrls: ['./message-list.component.css']
 })
-export class MessageListComponent implements OnInit {
+export class MessageListComponent implements OnInit, OnDestroy {
   @Output() messageWasAdded = new EventEmitter<Message>();
   messages: Message[] = [];
+  subscription: Subscription;
 
   constructor(private messageService2: MessageService) {
-    this.messages = this.messageService2.getMessages();
+    this.messageService2.getMessages();
    }
 
   ngOnInit() {
-    this.messageService2.messageChanged.subscribe(
+    this.subscription = this.messageService2.messageChanged.subscribe(
       (messages: Message[]) => {
         this.messages = messages;
       }
@@ -26,6 +28,14 @@ export class MessageListComponent implements OnInit {
 
   onAddMessage(message: Message) {
     this.messages.push(message);
+  }
+
+  onSelectedMessage(message: Message[]) {
+    this.messageService2.messageChanged.next(message);
+  }
+
+  ngOnDestroy() {
+    this.subscription.unsubscribe();
   }
 
 }

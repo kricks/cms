@@ -12,7 +12,6 @@ import { Contact } from 'src/app/contacts/contacts.model';
 export class MessageEditComponent implements OnInit {
   @ViewChild('subject') subject: ElementRef;
   @ViewChild('msgText') msgText: ElementRef;
-
   currentSender = '1';
 
   constructor(private messageService2: MessageService) { }
@@ -25,6 +24,8 @@ export class MessageEditComponent implements OnInit {
     const msgText  = this.msgText.nativeElement.value;
     const newMessage = new Message('1', subject, msgText, this.currentSender);
     this.messageService2.addMessage(newMessage);
+
+    this.onClear();
   }
 
   onClear() {
